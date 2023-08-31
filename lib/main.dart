@@ -11,6 +11,7 @@ void main() {
 
 
     ChangeNotifierProvider(create: (context)=> HadisDB()),
+    // ChangeNotifierProvider(create: (context)=> HadisDB()),
 
 
 

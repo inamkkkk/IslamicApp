@@ -110,7 +110,9 @@ class _HomeState extends State<Home> {
           if(Hadis.dataa.isEmpty){
 
             Hadis.loadJsonData();
-
+            Hadis.loadJsonDataFromAPI();
+            Hadis.FatchBooks();
+            Hadis.FatchChapter('ibn-e-majah');
 
           }
         return Scaffold(
@@ -144,7 +146,7 @@ class _HomeState extends State<Home> {
 
                       // HeadingText(
                       //     context: context,
-                      //     text: '${Hadis!.dataa[0].books![0].name} ',
+                      //     text: '${Hadis!.BooksNames!.books![0].bookName} ',
                       //     color: Colors.black,
                       //     center: false
                       // ),
@@ -167,7 +169,7 @@ class _HomeState extends State<Home> {
                       // ),
             HeadingText(
                           context: context,
-                          text: 'Hadith ',
+                          text: 'Hadith',
                           color: Colors.black,
                           center: false
                       ),
@@ -193,14 +195,19 @@ class _HomeState extends State<Home> {
                                 child: Row(
                                   children: [
                                     ListView.builder(
+
                                         physics: NeverScrollableScrollPhysics(),
 
                                         // clipBehavior: Clip.none,
                                         shrinkWrap: true,
                                         primary: true,
                                         scrollDirection: Axis.horizontal,
-                                        itemCount: Hadis!.dataa.length,
+                                        itemCount: Hadis!.BooksNames!.books!.length,
                                         itemBuilder: (context, i){
+
+                                          // String originalString = Hadis!.dataa[i].books![0].name;
+                                          // String modifiedString = originalString.substring(3);
+
                                           return
                                             Padding(
                                               padding: EdgeInsets.symmetric(horizontal: responsive(10, context)),
@@ -213,10 +220,11 @@ class _HomeState extends State<Home> {
                                                 svgheight: responsive(200, context),
                                                 svgwidth: responsive(100, context),
 
-                                                title: '${Hadis!.dataa[i].name}',
+                                                // title: ' ${Hadis!.dataa[i].name}',
+                                                title: ' ${Hadis!.BooksNames!.books![i].bookName}',
 
-                                                // subtitle: '${Hadis!.dataa[i].books![i].name[i]} ',
-                                                subtitle: '${Hadis!.dataa[i].books![0].name}  ',
+                                                subtitle: "Writer Name: ${Hadis!.BooksNames!.books![i].writerName}",
+                                                // subtitle: '${Hadis!.dataa[i].books![0].name}  ',
                                               ),
                                             );
                                         }

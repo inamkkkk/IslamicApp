@@ -39,7 +39,7 @@ dependencies:
   geolocator: ^9.0.1
   #  provider:
 #  get:
-#  http:
+  http:
   flutter_svg:
   provider:
 #  flutter_swipe_action_cell: ^3.1.2
