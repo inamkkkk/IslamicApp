@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:islamicapp/view/Home.dart';
 import 'package:islamicapp/view/Qiblahcompass.dart';
+import 'package:provider/provider.dart';
+
+import 'controller/hadithController.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp( MultiProvider(providers: [
+
+
+    ChangeNotifierProvider(create: (context)=> HadisDB()),
+
+
+
+
+  ],child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
