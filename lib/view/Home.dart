@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:islamicapp/view/BookChapters/ChaptersList.dart';
 import 'package:provider/provider.dart';
 
 import '../Global Styles/TextFiles.dart';
@@ -107,12 +109,12 @@ class _HomeState extends State<Home> {
         builder: (context, Hadis, child) {
 
 
-          if(Hadis.dataa.isEmpty){
+          if(Hadis.BooksNames==null){
 
-            Hadis.loadJsonData();
-            Hadis.loadJsonDataFromAPI();
+            // Hadis.loadJsonData();
+           // Hadis.loadJsonDataFromAPI();
             Hadis.FatchBooks();
-            Hadis.FatchChapter('ibn-e-majah');
+
 
           }
         return Scaffold(
@@ -194,7 +196,7 @@ class _HomeState extends State<Home> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   children: [
-                                    ListView.builder(
+                                   Hadis.BooksNames==null?CircularProgressIndicator():ListView.builder(
 
                                         physics: NeverScrollableScrollPhysics(),
 
@@ -209,22 +211,32 @@ class _HomeState extends State<Home> {
                                           // String modifiedString = originalString.substring(3);
 
                                           return
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: responsive(10, context)),
-                                              child: CustomCardConatiner(
-                                                width: responsive(400, context),
-                                                height: responsive(400, context),
-                                                customColor: Colors.white70.withOpacity(0.3),
+                                            InkWell(
+                                              onTap: (
 
-                                                svgImagePath: 'images/Hadis.png',
-                                                svgheight: responsive(200, context),
-                                                svgwidth: responsive(100, context),
+                                              ){
+                                                Hadis.intonull();
 
-                                                // title: ' ${Hadis!.dataa[i].name}',
-                                                title: ' ${Hadis!.BooksNames!.books![i].bookName}',
+                                                Get.to(ChapterList(bookslug: Hadis!.BooksNames!.books![i].bookSlug,));
 
-                                                subtitle: "Writer Name: ${Hadis!.BooksNames!.books![i].writerName}",
-                                                // subtitle: '${Hadis!.dataa[i].books![0].name}  ',
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(horizontal: responsive(10, context)),
+                                                child: CustomCardConatiner(
+                                                  width: responsive(400, context),
+                                                  height: responsive(400, context),
+                                                  customColor: Colors.white70.withOpacity(0.3),
+
+                                                  svgImagePath: 'images/Hadis.png',
+                                                  svgheight: responsive(200, context),
+                                                  svgwidth: responsive(100, context),
+
+                                                  // title: ' ${Hadis!.dataa[i].name}',
+                                                  title: ' ${Hadis!.BooksNames!.books![i].bookName}',
+
+                                                  subtitle: "Writer Name: ${Hadis!.BooksNames!.books![i].writerName}",
+                                                  // subtitle: '${Hadis!.dataa[i].books![0].name}  ',
+                                                ),
                                               ),
                                             );
                                         }

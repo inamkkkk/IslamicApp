@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamicapp/modelclass/BookListModel.dart';
@@ -49,6 +50,7 @@ BooksList? BooksNames;
   // sahih_bukhariApi
 
   Future<void> loadJsonDataFromAPI() async {
+
     // try {
       // Replace the API URL with your actual API endpoint
       var apiUrl = 'https://www.hadithapi.com/public/api/hadiths?apiKey=\$2y\$10\$SzWdz0WEGQaEhf48dXiZtGp7GL9G1jEKE4Xy1zqZ150ClPwrTe';
@@ -71,6 +73,7 @@ BooksList? BooksNames;
     // }
   }
   Future<void> FatchBooks() async {
+
     // try {
     // Replace the API URL with your actual API endpoint
     var apiUrl = 'https://www.hadithapi.com/api/books?apiKey=\$2y\$10\$SzWdz0WEGQaEhf48dXiZtGp7GL9G1jEKE4Xy1zqZ150ClPwrTe';
@@ -93,14 +96,26 @@ BooksList? BooksNames;
     // }
   }
 
+void intonull(){
+    ChapterNames =null;
+    // BooksNames = null;
+}
 
+var isEnglish = true;
+  void buttontogel(){
+    if(isEnglish==true){
+      isEnglish=false;
+    }else isEnglish=true;
+    notifyListeners();
+  }
 
   ChapterList? ChapterNames;
   // sahih_bukhariApi
-  Future<void> FatchChapter(String? Chapter) async {
+  Future<void> FatchChapter({String? bookslug}) async {
+
     // try {
     // Replace the API URL with your actual API endpoint
-    var apiUrl = 'https://www.hadithapi.com/api/$Chapter/chapters?apiKey=\$2y\$10\$SzWdz0WEGQaEhf48dXiZtGp7GL9G1jEKE4Xy1zqZ150ClPwrTe';
+    var apiUrl = 'https://www.hadithapi.com/api/$bookslug/chapters?apiKey=\$2y\$10\$SzWdz0WEGQaEhf48dXiZtGp7GL9G1jEKE4Xy1zqZ150ClPwrTe';
 
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {

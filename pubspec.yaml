@@ -38,7 +38,7 @@ dependencies:
   flutter_qiblah: ^2.1.0
   geolocator: ^9.0.1
   #  provider:
-#  get:
+  get:
   http:
   flutter_svg:
   provider:

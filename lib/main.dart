@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:islamicapp/view/Home.dart';
 import 'package:islamicapp/view/Qiblahcompass.dart';
 import 'package:provider/provider.dart';
@@ -25,14 +26,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'IslamicApp',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return GetMaterialApp(
+      home: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'IslamicApp',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home:  mainPage()
       ),
-      home:  mainPage()
     );
   }
 }
